@@ -16,6 +16,7 @@ class UserController extends Controller
     {
         return view('login', ['title' => 'Login']);
     }
+
     public function authenticate(Request $request)
     {
         $credential = $request->validate([
@@ -28,6 +29,7 @@ class UserController extends Controller
         }
         return back()->with('loginError', 'Login Failed');
     }
+    
     public function logout(Request $request)
     {
         Auth::logout();
@@ -45,11 +47,6 @@ class UserController extends Controller
 
     public function store(UserCreateRequest $request)
     {
-        //  $validated = $request->validate([
-        //     'name' => 'required|max:100',
-        //     'email' => 'required|max:100',
-        //     'password' => 'regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/|max:100'
-        // ]);
 
         User::create([
             'name'=>$request->name,

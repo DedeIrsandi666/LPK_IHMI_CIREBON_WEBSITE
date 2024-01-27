@@ -14,35 +14,27 @@
                     </div>
                 @endif
 
-    
 
-             {{-- <p>jika ingin memesan minuman yang ada di menu bisa isi form di bawah ini lalu klik Tombol Keranjang Hijau</p><br> --}}
 
-<div class="container">
-    <div class="card-deck ">                
-        <!-- Row -->
-        <div class="row">
-                @foreach ($informasis as $info)
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                {{-- <center class="mt-4"> --}}
-                                    <img src="{{ asset('data_img/informasi/'. $info->gambar) }}" style="width: 100px; height: 200px;">
-                                    <br><br>    
-                                    <h6 class="card-subtitle">{{$info->created_at}}</h6>
-                                    <h4 class="card-title mt-2">{{ $info->postingan}}</h4>
-                                    <br><br>
-                                                                        
-                                {{-- </center> --}}
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                <div class="my-5">
-                    {{ $informasis->links() }}
-                </div>
+<div class="container text-center">
+    @foreach ($informasis as $info)
+        <div class="card text-center">
+            <div class="card-body">
+                <img src="{{ asset('data_img/informasi/'. $info->gambar) }}" style="width: 50%; height: 50%;">
+                <br><br>    
+                    <h6 class="card-subtitle">{{$info->created_at}}</h6>
+                    <h4 class="card-title mt-2">{{ $info->postingan}}</h4>
+                    <br><br>
+                    <form action="{{ route('informasi.destroy',$info->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger " onclick="javascript: return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus Postingan</button>
+                    </form>
             </div>
         </div>
+    @endforeach
+    <div class="my-4">
+        {{ $informasis->links() }}
     </div>
 </div>
 @endsection

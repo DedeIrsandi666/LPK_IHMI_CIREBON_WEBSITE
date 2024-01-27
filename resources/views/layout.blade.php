@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>@yield('title')</title>
+	<title>@yield('title') WEBSITE</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{{asset('assets3/img/lpk_ihmi1.png')}}" type="image/x-icon')}}"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -91,7 +91,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="user-show">
+							<a href="/user-show">
 								<span class="letter-icon">4</span>
 								<p>Daftar Profil Admin</p>
 							</a>
