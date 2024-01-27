@@ -12,6 +12,6 @@ class PesertaApi extends Model
     protected $table = 'peserta';
     protected $primaryKey = 'id_peserta';
     protected $fillable = [
-        'foto', 'nama', 'alamat', 'email', 'password', 'angakatan'
+        'foto', 'nama', 'alamat', 'email', 'password', 'angkatan'
     ];
 }

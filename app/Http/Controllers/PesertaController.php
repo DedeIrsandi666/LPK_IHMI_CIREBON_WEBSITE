@@ -14,10 +14,15 @@ class PesertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pesertas = Peserta::latest()->paginate(5);
-        return view('peserta.index', ['pesertas'=>$pesertas])->with('i',(request()->input('page',1)-1)*5);
+        $pencarian = $request->search;
+        $pesertas = Peserta::where('nama','LIKE','%'.$pencarian.'%')
+        ->orWhere('angkatan','LIKE','%'.$pencarian.'%')
+        ->orWhere('email','LIKE','%'.$pencarian.'%')
+        ->orWhere('alamat','LIKE','%'.$pencarian.'%')
+        ->latest()->paginate(10);
+        return view('peserta.index', ['pesertas'=>$pesertas])->with('i',(request()->input('page',1)-1)*10);
     }
 
     /**

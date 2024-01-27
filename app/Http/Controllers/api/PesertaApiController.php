@@ -8,6 +8,9 @@ use App\Models\api\PesertaApi;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\api\validator;
+use Illuminate\Contracts\Validation\Validator as ValidationValidator;
+use Illuminate\Database\QueryException as DatabaseQueryException;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class PesertaApiController extends Controller
 {
@@ -36,9 +39,33 @@ class PesertaApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+{
+    try {
+        $validator = FacadesValidator::make($request->all(), [
+            'foto' => 'required',
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'angkatan' => 'required',
+        ]);
         
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        
+        PesertaApi::create($request->all());
+        $response = [
+            'Success' => 'New Peserta Created',
+        ];
+        return response()->json($response, Response::HTTP_CREATED);
+    } catch (DatabaseQueryException $e) {
+        $error = [
+            'error' => $e->getMessage()
+        ];
+        return response()->json($error, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
+}
+
 
     /**
      * Display the specified resource.

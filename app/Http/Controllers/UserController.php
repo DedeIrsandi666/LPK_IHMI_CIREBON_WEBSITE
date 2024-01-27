@@ -66,8 +66,8 @@ class UserController extends Controller
     }
 
     public function show() {
-        $users = User::latest()->paginate(5);
-        return view('user.index', ['users'=>$users])->with('i',(request()->input('page',1)-1)*5);
+        $users = User::latest()->paginate(10);
+        return view('user.index', ['users'=>$users])->with('i',(request()->input('page',1)-1)*10);
     }
 
     public function destroy($id_user)
