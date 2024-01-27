@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Login Admin LPK IHMI CIREBON</title>
     <link rel="stylesheet" href="{{ asset ('css/style.css')}}">
+    <link rel="icon" href="{{asset('assets3/img/lpk_ihmi1.png')}}" type="image/x-icon')}}"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
