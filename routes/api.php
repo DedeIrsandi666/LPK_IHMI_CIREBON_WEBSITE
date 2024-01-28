@@ -6,6 +6,7 @@ use App\Http\Controllers\api\PesertaApiController;
 use App\Http\Controllers\api\PesertaController;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::apiResource('peserta', PesertaApiController::class);
-Route::apiResource('informasi', InformasiApiController::class);
+Route::post('login', [PesertaApiController::class, 'loginApi']);
+//http://localhost:8000/api/login
+Route::post('logout', [PesertaApiController::class, 'logoutApi']);
+//http://localhost:8000/api/login
+Route::apiResource('peserta', PesertaApiController::class)->middleware('auth:sanctum');
+//http://localhost:8000/api/peserta
+Route::apiResource('informasi', InformasiApiController::class)->middleware('auth:sanctum');
+//http://localhost:8000/api/informasi

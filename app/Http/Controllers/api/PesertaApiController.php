@@ -11,6 +11,8 @@ use App\Http\Controllers\api\validator;
 use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Database\QueryException as DatabaseQueryException;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
+// use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class PesertaApiController extends Controller
 {
@@ -110,4 +112,84 @@ class PesertaApiController extends Controller
     {
         //
     }
+
+    public function loginApi(Request $request)
+    {
+        // $loginData = $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+
+        // if (Auth::attempt($loginData)) {
+        //     $token = Auth::user()->createToken('authToken')->plainTextToken;
+        //     return response()->json([
+        //         'data' => Auth::user(),
+        //         'token' => $token,
+        //     ],200);
+        // }
+
+        // return response()->json([
+        //     'message' => 'Invalid Credentials',
+        // ], 401);
+
+        // if (PesertaApi::attempt(['email'=>$request->email, 'password'=>$request->password])){
+        //     $auth = PesertaApi::user();
+        //     $success['token'] = $auth->createToken('auth_token')->plainTextToken;
+        //     $success['nama'] = $auth->nama;
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Login Success',
+        //         'data' => $success,
+        //     ]);
+        // }else{
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Login Failed',
+        //         'data' => null,
+        //     ]);
+
+        // }
+
+        
+        $user = PesertaApi::where('email', $request->email)->first();
+
+        if ($user) {
+            if ($request->password === $user->password) {
+                $token = $user->createToken('auth_token')->plainTextToken;
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Login Success',
+                    'token' => $token,
+                    'nama' => $user->nama,
+                ]);
+            }
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Login Failed',
+            'data' => null,
+        ]);
+
+
+    }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'You have successfully logged out and the token was successfully deleted'
+        ];
+    }
+
+    // public function logoutApi(Request $request)
+    // {
+    //     $request->user()->tokens()->delete();
+
+    //     return response()->json([
+    //         'message' => 'You have successfully logged out.'
+    //     ]);
+    // }
 }
