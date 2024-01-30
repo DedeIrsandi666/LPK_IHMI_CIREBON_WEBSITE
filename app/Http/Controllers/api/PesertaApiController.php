@@ -25,11 +25,19 @@ class PesertaApiController extends Controller
     {
         try {
             $pesertaapi = PesertaApi::all();
-            return response()->json($pesertaapi, Response::HTTP_OK);
+
+            return response()->json([
+                'status' => 'Success',
+                'message' => 'List data peserta',
+                'data' => $pesertaapi,
+                // 'image' => $image,
+            ]);
+            // return response()->json($pesertaapi, Response::HTTP_OK);
         } catch (\Illuminate\Database\QueryException $e) {
             $error = [
                 'error' => $e->getMessage()
             ];
+            
             return response()->json($error, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -75,10 +83,10 @@ class PesertaApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_peserta)
     {
         try {
-            $pesertaapi = PesertaApi::findOrFail($id);
+            $pesertaapi = PesertaApi::findOrFail($id_peserta);
             $response = [
                 $pesertaapi
             ];
@@ -175,14 +183,14 @@ class PesertaApiController extends Controller
 
     }
 
-    public function logout()
-    {
-        auth()->user()->tokens()->delete();
+    // public function logout()
+    // {
+    //     auth()->user()->tokens()->delete();
 
-        return [
-            'message' => 'You have successfully logged out and the token was successfully deleted'
-        ];
-    }
+    //     return [
+    //         'message' => 'You have successfully logged out and the token was successfully deleted'
+    //     ];
+    // }
 
     // public function logoutApi(Request $request)
     // {

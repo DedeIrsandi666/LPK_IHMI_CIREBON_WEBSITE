@@ -20,7 +20,13 @@ class InformasiApiController extends Controller
     {
         try {
             $informasiapi = InformasiApi::all();
-            return response()->json($informasiapi, Response::HTTP_OK);
+            return response()->json([
+                'status' => 'Success',
+                'message' => 'List data peserta',
+                'data' => $informasiapi,
+                // 'image' => $image,
+            ]);
+            // return response()->json($informasiapi, Response::HTTP_OK);
         } catch (\Illuminate\Database\QueryException $e) {
             $error = [
                 'error' => $e->getMessage()
