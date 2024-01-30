@@ -166,16 +166,16 @@ class PesertaApiController extends Controller
                 $token = $user->createToken('auth_token')->plainTextToken;
 
                 return response()->json([
-                    'success' => true,
+                    'loginStatus' => true,
                     'message' => 'Login Success',
                     'token' => $token,
-                    'nama' => $user->nama,
+                    'userInfo' => $user,
                 ]);
             }
         }
 
-        return response()->json([
-            'success' => false,
+        return $this->output([
+            'loginStatus' => false,
             'message' => 'Login Failed',
             'data' => null,
         ]);

@@ -27,11 +27,12 @@ body {
 }
 
 .header {
-    background-image: url(../Assets/images/icon/ihmi.jpg);
+    background-image: url(../assets3/img/Group02.png);
     background-size: cover;
     padding: 90px 30px;
     color: white;
     border-radius: 15px 15px 0 0;
+    text-align: center;
 }
 
 .header p {

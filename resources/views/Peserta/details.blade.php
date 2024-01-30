@@ -19,7 +19,7 @@
 <div class="container">               
     <div class="row">
         <div class="col-md-6">
-            <img src="{{ asset('data_img/peserta/' . $peserta->foto) }}" style="width: 80%; height: 80%;">
+            <img src="{{ asset('data_img/peserta/' . $peserta->foto) }}" style="height: 60%; ">
         </div>
         <div class="col-md-6">
             <h5><strong>Nama:</strong> {{ $peserta->nama }}</h5><br>

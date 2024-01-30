@@ -13,7 +13,7 @@
       <form action="{{ route('login') }}" method="POST" class="box">
     @csrf
        <div class="header">
-           <h4>Silahkan Login Terlebih dahulu untuk mengakses halaman ini!</h4>
+           <h4>Silahkan Login Terlebih dahulu untuk mengakses halaman ini</h4>
            <p>Ini adalah halaman khusus untuk Admin LPK IHMI CIREBON</p>
            @if ($errors-> any())
                 <div class= "alert alert-danger">
