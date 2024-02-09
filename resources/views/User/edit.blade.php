@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
-                        <h1 class="mt-4">Tambah Admin</h1>
+                        <h1 class="mt-4">Edit Data Admin</h1>
                                               
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-edit mr-1"></i> Isi Data Data Admin</div>
