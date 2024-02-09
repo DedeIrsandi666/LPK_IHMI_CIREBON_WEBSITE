@@ -156,7 +156,9 @@ class PesertaApiController extends Controller
         //         'data' => null,
         //     ]);
 
-        // }
+        
+
+        
 
         
         $user = PesertaApi::where('email', $request->email)->first();
@@ -200,4 +202,11 @@ class PesertaApiController extends Controller
     //         'message' => 'You have successfully logged out.'
     //     ]);
     // }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
 }

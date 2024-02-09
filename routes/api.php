@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('login', [PesertaApiController::class, 'loginApi']);
 //http://localhost:8000/api/login
-Route::post('logout', [PesertaApiController::class, 'logoutApi']);
+Route::post('logout', [PesertaApiController::class, 'logout']);
 //http://localhost:8000/api/login
 Route::apiResource('peserta', PesertaApiController::class);
 // ->middleware('auth:sanctum');
